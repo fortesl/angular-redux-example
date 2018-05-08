@@ -1,0 +1,29 @@
+<div class="list">
+    <h1>{{ title }}</h1>
+    <mat-form-field>
+      <input
+        #todo
+        (keyup.enter)="addTodo(todo)"
+        placeholder="Todo"
+        matInput>
+    </mat-form-field>
+    <button
+      (click)="addTodo(todo)"
+      mat-raised-button>
+      Add
+    </button>
+    <mat-list role="list">
+      <mat-list-item
+        role="list-item"
+        *ngFor="let item of todos | async">
+        <span
+          [ngClass]="{ selected: item.selected }"
+          (click)="toggleTodo(item)"
+          class="todo-title">{{ item.title }}</span>
+        <button mat-raised-button
+          (click)="removeTodo(item)">
+          Remove
+        </button>
+      </mat-list-item>
+    </mat-list>
+</div>
